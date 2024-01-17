@@ -5,6 +5,7 @@ interface CreateTaskUseCaseRequest {
     title: string;
     description: string;
     color: string;
+    isFavorited?: boolean;
 }
 
 interface CreateTaskUseCaseResponse {
@@ -18,6 +19,7 @@ export class CreateTaskUseCase {
         title,
         description,
         color,
+        isFavorited,
     }: CreateTaskUseCaseRequest): Promise<CreateTaskUseCaseResponse> {
         if (title.length < 1) {
             throw new Error("Title can't be empty");
@@ -27,6 +29,7 @@ export class CreateTaskUseCase {
             title,
             description,
             color,
+            isFavorited,
         });
 
         return {

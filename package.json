@@ -1,33 +1,36 @@
 {
-  "name": "corelab-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/server.ts",
-    "start": "node build/server.js",
-    "build": "tsup src --out-dir build"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@prisma/client": "^5.8.1",
-    "@types/node": "^20.11.4",
-    "dotenv": "^16.3.1",
-    "fastify": "^4.25.2",
-    "tsx": "^4.7.0",
-    "typescript": "^5.3.3",
-    "validator": "^13.11.0",
-    "zod": "^3.22.4"
-  },
-  "engines": {
-    "node": "^16.15.0",
-    "npm": "^8.5.5"
-  },
-  "devDependencies": {
-    "@types/validator": "^13.11.8",
-    "prisma": "^5.8.1"
-  }
+    "name": "corelab-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "tsx watch src/server.ts",
+        "start": "node build/server.js",
+        "build": "tsup src --out-dir build",
+        "test": "vitest run --dir src/use-cases/tests",
+        "test:watch": "vitest --dir src/use-cases/tests"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@prisma/client": "^5.8.1",
+        "@types/node": "^20.11.4",
+        "dotenv": "^16.3.1",
+        "fastify": "^4.25.2",
+        "tsx": "^4.7.0",
+        "typescript": "^5.3.3",
+        "validator": "^13.11.0",
+        "zod": "^3.22.4"
+    },
+    "engines": {
+        "node": "^16.15.0",
+        "npm": "^8.5.5"
+    },
+    "devDependencies": {
+        "@types/validator": "^13.11.8",
+        "prisma": "^5.8.1",
+        "vite-tsconfig-paths": "^4.3.1",
+        "vitest": "^1.2.1"
+    }
 }
