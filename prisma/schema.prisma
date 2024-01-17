@@ -13,9 +13,9 @@ datasource db {
 
 model Task {
   id String @id @default(uuid())
-  Title String
-  Description String
-  Color String
+  title String
+  description String
+  color String
 
   @@map("tasks")
 }
