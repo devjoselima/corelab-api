@@ -24,6 +24,10 @@ Para gerar o esquema do Prisma assim como a estrutura no banco de dados, basta r
 
 Agora também deve rodar somente o comando `npx prisma generate` para gerar o esquema do prisma.
 
+## Rodando os testes
+
+Para rodar os testes execute `npm run test` no terminal ou `npm run test:watch` para executar em modo de watch
+
 ## Rodando o projeto
 
 Para rodar o projeto utilize o script `npm run dev`
