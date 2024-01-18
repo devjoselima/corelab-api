@@ -2,7 +2,7 @@ import { Task } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export interface IDeleteTaskRepository {
-    execute(taskId: string): Promise<Task>;
+    execute(taskId: string): Promise<Task | null>;
 }
 
 export class PrismaDeleteTaskRepository implements IDeleteTaskRepository {

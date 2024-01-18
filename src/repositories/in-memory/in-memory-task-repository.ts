@@ -3,6 +3,7 @@ import {
     ICreateTaskRepository,
     IDeleteTaskRepository,
     IGetTasksRepository,
+    IUpdateTaskRepository,
 } from "../prisma";
 
 export class InMemoryCreateTaskRepository implements ICreateTaskRepository {
@@ -34,18 +35,11 @@ export class InMemoryDeleteTaskRepository implements IDeleteTaskRepository {
 
         const deletedTask = this.tasks.find((item) => item.id === idToRemove);
 
-        if (deletedTask) {
-            this.tasks = this.tasks.filter((item) => item.id !== idToRemove);
-            return deletedTask;
+        if (!deletedTask) {
+            return null;
         }
 
-        return {
-            id: "",
-            title: "",
-            description: "",
-            color: "",
-            isFavorited: false,
-        };
+        return deletedTask;
     }
 }
 
