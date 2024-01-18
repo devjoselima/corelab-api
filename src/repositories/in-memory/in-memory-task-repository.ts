@@ -20,19 +20,27 @@ export class InMemoryCreateTaskRepository implements ICreateTaskRepository {
 }
 
 export class InMemoryDeleteTaskRepository implements IDeleteTaskRepository {
-    public tasks: Task[] = [
-        {
-            id: "9f4c42dc-38d3-43fe-8bc7-4eff1866c9c4",
-            title: "Estudar typescript",
-            description: "Estudar typescript durante 3 horas todos os dias",
-            color: "blue",
-            isFavorited: false,
-        },
-    ];
+    public tasks: Task[] = [];
+    constructor(private createTaskRepository: InMemoryCreateTaskRepository) {
+        this.tasks = createTaskRepository.tasks;
+    }
 
     async execute(taskId: string) {
         const idToRemove = taskId;
 
-        this.tasks.filter((item) => item.id !== idToRemove);
+        const deletedTask = this.tasks.find((item) => item.id === idToRemove);
+
+        if (deletedTask) {
+            this.tasks = this.tasks.filter((item) => item.id !== idToRemove);
+            return deletedTask;
+        }
+
+        return {
+            id: "",
+            title: "",
+            description: "",
+            color: "",
+            isFavorited: false,
+        };
     }
 }

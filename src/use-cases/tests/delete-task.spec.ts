@@ -6,30 +6,37 @@ import {
 } from "../../repositories/in-memory/in-memory-task-repository";
 
 import { DeleteTaskUseCase } from "../delete-task";
-import { CreateTaskUseCase } from "../create-task";
 
 let deleteTaskRepository: InMemoryDeleteTaskRepository;
 let createTaskRepository: InMemoryCreateTaskRepository;
 
-let createTaskUseCase: CreateTaskUseCase;
 let sut: DeleteTaskUseCase;
 
 describe("Delete Task Use Case", () => {
     beforeEach(() => {
         createTaskRepository = new InMemoryCreateTaskRepository();
-        deleteTaskRepository = new InMemoryDeleteTaskRepository();
+        deleteTaskRepository = new InMemoryDeleteTaskRepository(
+            createTaskRepository
+        );
 
-        createTaskUseCase = new CreateTaskUseCase(createTaskRepository);
         sut = new DeleteTaskUseCase(deleteTaskRepository);
     });
 
     it("should be able to delete a task", async () => {
-        const task = await sut.execute({
+        const taskToDelete = await createTaskRepository.execute({
+            id: "9f4c42dc-38d3-43fe-8bc7-4eff1866c9c4",
+            title: "teste",
+            description: "testando",
+            color: "blue",
+            isFavorited: false,
+        });
+
+        const { deletedTask } = await sut.execute({
             taskId: "9f4c42dc-38d3-43fe-8bc7-4eff1866c9c4",
         });
 
-        console.log(task);
+        console.log(deletedTask);
 
-        await expect(task).toEqual(undefined);
+        await expect(deletedTask.id).toEqual(taskToDelete.id);
     });
 });

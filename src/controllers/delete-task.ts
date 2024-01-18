@@ -23,11 +23,11 @@ export const deleteTaskController = async (
             return reply.status(404).send({ message: "Id is not valid" });
         }
 
-        await deleteTaskUseCase.execute({
+        const deletedTask = await deleteTaskUseCase.execute({
             taskId,
         });
 
-        return reply.status(200).send;
+        return reply.status(200).send(deletedTask);
     } catch (error) {
         reply.status(404).send({ message: "Id is not found" });
     }

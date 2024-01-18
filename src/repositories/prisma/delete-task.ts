@@ -1,15 +1,18 @@
+import { Task } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
 export interface IDeleteTaskRepository {
-    execute(taskId: string): Promise<void>;
+    execute(taskId: string): Promise<Task>;
 }
 
 export class PrismaDeleteTaskRepository implements IDeleteTaskRepository {
     async execute(taskId: string) {
-        await prisma.task.delete({
+        const deletedTask = await prisma.task.delete({
             where: {
                 id: taskId,
             },
         });
+
+        return deletedTask;
     }
 }
