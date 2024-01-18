@@ -1,7 +1,1 @@
-# REGRAS
-
-### TASK
-
--   Title
--   Content
--   Color
+# CORELAB API
