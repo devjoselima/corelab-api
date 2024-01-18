@@ -6,7 +6,7 @@ interface DeleteTaskUseCaseRequest {
 }
 
 interface DeleteTaskUseCaseResponse {
-    deletedTask: Task;
+    deletedTask: Task | null;
 }
 
 export class DeleteTaskUseCase {

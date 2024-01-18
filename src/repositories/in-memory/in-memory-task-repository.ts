@@ -26,9 +26,6 @@ export class InMemoryCreateTaskRepository implements ICreateTaskRepository {
 
 export class InMemoryDeleteTaskRepository implements IDeleteTaskRepository {
     public tasks: Task[] = [];
-    constructor(private createTaskRepository: InMemoryCreateTaskRepository) {
-        this.tasks = createTaskRepository.tasks;
-    }
 
     async execute(taskId: string) {
         const idToRemove = taskId;
