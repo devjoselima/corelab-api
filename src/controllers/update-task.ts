@@ -14,7 +14,7 @@ export const updateTaskController = async (
     reply: FastifyReply
 ) => {
     const createTaskInParamsSchema = z.object({
-        taskId: z.string().uuid(),
+        taskId: z.string(),
     });
 
     const updateTaskBodySchema = z.object({
@@ -33,6 +33,12 @@ export const updateTaskController = async (
 
     try {
         const updatedTaskUseCase = makeUpdateTaskUseCase();
+
+        const isIdValid = validator.isUUID(taskId);
+
+        if (!isIdValid) {
+            return reply.status(404).send({ message: "Id is not valid" });
+        }
 
         const someFieldIsNotAllowed = validateFieldsIsNotAllowed(
             params as ParamsProps
