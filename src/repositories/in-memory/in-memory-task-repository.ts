@@ -43,9 +43,6 @@ export class InMemoryDeleteTaskRepository implements IDeleteTaskRepository {
 
 export class InMemoryGetTaskRepository implements IGetTasksRepository {
     public tasks: Task[] = [];
-    constructor(private createTaskRepository: InMemoryCreateTaskRepository) {
-        this.tasks = createTaskRepository.tasks;
-    }
 
     async execute() {
         return this.tasks;
