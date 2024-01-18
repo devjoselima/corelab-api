@@ -4,7 +4,9 @@
 
 ## Instalando dependências do projeto
 
-O projeto está utilizando o package manager 'npm' para lidar com os pacotes no node, sendo assim, para baixar as dependencias do projeto basta rodar o comando: `npm install`
+O projeto está utilizando o package manager 'npm' para lidar com os pacotes no node.
+<br />
+Para baixar as dependencias do projeto basta rodar o comando: `npm install`
 <br/>
 
 ## Configurando variáveis de ambiente
