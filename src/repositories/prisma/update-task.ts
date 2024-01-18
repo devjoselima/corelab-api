@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma, Task } from "@prisma/client";
 
-interface DataProps {
+export interface TaskProps {
     title?: string;
     description?: string;
     color?: string;
@@ -9,7 +9,7 @@ interface DataProps {
 }
 
 export interface IUpdateTaskRepository {
-    execute(id: string, data: DataProps): Promise<Task>;
+    execute(id: string, data: TaskProps): Promise<Task | null>;
 }
 
 export class PrismaUpdateTaskRepository implements IUpdateTaskRepository {

@@ -7,6 +7,7 @@ import {
     validateFieldsIsNotAllowed,
     validateFieldsNotEmpty,
 } from "./utils";
+import validator from "validator";
 
 export const updateTaskController = async (
     request: FastifyRequest,
@@ -45,8 +46,6 @@ export const updateTaskController = async (
 
         const fieldIsEmpty = validateFieldsNotEmpty(params as ParamsProps);
 
-        console.log(fieldIsEmpty);
-
         if (fieldIsEmpty) {
             return reply.status(400).send({ message: "Field can't be empty" });
         }
@@ -66,6 +65,6 @@ export const updateTaskController = async (
         return reply.status(200).send({ updatedTask });
     } catch (error) {
         console.log(error);
-        return reply.status(500).send({ message: "Internal Server Error" });
+        return reply.status(404).send({ message: "Id is not found" });
     }
 };

@@ -10,7 +10,7 @@ interface UpdateTaskUseCaseRequest {
 }
 
 interface UpdateTaskUseCaseResponse {
-    updatedTask: Task;
+    updatedTask: Task | null;
 }
 
 export class UpdateTaskUseCase {

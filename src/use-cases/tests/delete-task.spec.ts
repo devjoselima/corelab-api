@@ -1,21 +1,16 @@
 import { expect, describe, it, beforeEach } from "vitest";
 
-import {
-    InMemoryCreateTaskRepository,
-    InMemoryDeleteTaskRepository,
-} from "../../repositories/in-memory/in-memory-task-repository";
+import { InMemoryDeleteTaskRepository } from "../../repositories/in-memory/in-memory-task-repository";
 
 import { DeleteTaskUseCase } from "../delete-task";
 import { randomUUID } from "crypto";
 
 let deleteTaskRepository: InMemoryDeleteTaskRepository;
-let createTaskRepository: InMemoryCreateTaskRepository;
 
 let sut: DeleteTaskUseCase;
 
 describe("Delete Task Use Case", () => {
     beforeEach(() => {
-        createTaskRepository = new InMemoryCreateTaskRepository();
         deleteTaskRepository = new InMemoryDeleteTaskRepository();
 
         sut = new DeleteTaskUseCase(deleteTaskRepository);
@@ -24,8 +19,8 @@ describe("Delete Task Use Case", () => {
     it("should be able to delete a task", async () => {
         const taskToDelete = {
             id: randomUUID(),
-            title: "teste",
-            description: "testando",
+            title: "tarefa para ser deletada",
+            description: "esta tarefa será deletada",
             color: "blue",
             isFavorited: false,
         };

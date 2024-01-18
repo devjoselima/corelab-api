@@ -4,6 +4,7 @@ import {
     IDeleteTaskRepository,
     IGetTasksRepository,
     IUpdateTaskRepository,
+    TaskProps,
 } from "../prisma";
 
 export class InMemoryCreateTaskRepository implements ICreateTaskRepository {
@@ -48,5 +49,28 @@ export class InMemoryGetTaskRepository implements IGetTasksRepository {
 
     async execute() {
         return this.tasks;
+    }
+}
+
+export class InMemoryUpdateTaskRepository implements IUpdateTaskRepository {
+    public tasks: Task[] = [];
+
+    async execute(taskId: string, data: TaskProps): Promise<Task | null> {
+        const updatedTaskIndex = this.tasks.findIndex(
+            (task) => task.id === taskId
+        );
+
+        if (updatedTaskIndex === -1) {
+            return null;
+        }
+
+        const updatedTask: Task = {
+            ...this.tasks[updatedTaskIndex],
+            ...data,
+        };
+
+        this.tasks[updatedTaskIndex] = updatedTask;
+
+        return updatedTask;
     }
 }
