@@ -35,8 +35,6 @@ describe("Delete Task Use Case", () => {
             taskId: "9f4c42dc-38d3-43fe-8bc7-4eff1866c9c4",
         });
 
-        console.log(deletedTask);
-
         await expect(deletedTask.id).toEqual(taskToDelete.id);
     });
 });

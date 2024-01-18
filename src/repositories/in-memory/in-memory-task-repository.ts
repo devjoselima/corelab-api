@@ -1,5 +1,9 @@
 import { Task, Prisma } from "@prisma/client";
-import { ICreateTaskRepository, IDeleteTaskRepository } from "../prisma";
+import {
+    ICreateTaskRepository,
+    IDeleteTaskRepository,
+    IGetTasksRepository,
+} from "../prisma";
 
 export class InMemoryCreateTaskRepository implements ICreateTaskRepository {
     public tasks: Task[] = [];
@@ -42,5 +46,16 @@ export class InMemoryDeleteTaskRepository implements IDeleteTaskRepository {
             color: "",
             isFavorited: false,
         };
+    }
+}
+
+export class InMemoryGetTaskRepository implements IGetTasksRepository {
+    public tasks: Task[] = [];
+    constructor(private createTaskRepository: InMemoryCreateTaskRepository) {
+        this.tasks = createTaskRepository.tasks;
+    }
+
+    async execute() {
+        return this.tasks;
     }
 }
