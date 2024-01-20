@@ -1,4 +1,7 @@
 import fastify from "fastify";
+
+import cors from "@fastify/cors";
+
 import {
     createTaskController,
     deleteTaskController,
@@ -7,6 +10,13 @@ import {
 } from "./controllers/";
 
 export const app = fastify();
+
+app.register(cors, {
+    origin: "http://localhost:5173",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+});
 
 app.get("/tasks", getTaskController);
 app.post("/tasks", createTaskController);

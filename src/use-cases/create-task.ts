@@ -25,6 +25,10 @@ export class CreateTaskUseCase {
             throw new Error("Title can't be empty");
         }
 
+        if (description.length < 1) {
+            throw new Error("Description can't be empty");
+        }
+
         const task = await this.createTaskRepository.execute({
             title,
             description,

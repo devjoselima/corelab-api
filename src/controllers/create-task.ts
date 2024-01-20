@@ -10,22 +10,25 @@ export const createTaskController = async (
         title: z.string(),
         description: z.string(),
         color: z.string(),
+        isFavorited: z.boolean().default(false),
     });
 
-    const { title, description, color } = taskBodySchema.parse(request.body);
+    const { title, description, color, isFavorited } = taskBodySchema.parse(
+        request.body
+    );
 
     try {
         const createTaskUseCase = makeCreateTaskUseCase();
 
-        await createTaskUseCase.execute({
+        const createdTask = await createTaskUseCase.execute({
             title,
             description,
             color,
+            isFavorited,
         });
+        return reply.status(201).send(createdTask);
     } catch (error) {
         console.log(error);
         throw new Error();
     }
-
-    return reply.status(201).send;
 };
