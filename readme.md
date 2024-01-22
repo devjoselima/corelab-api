@@ -20,6 +20,10 @@ NODE_ENV=dev
 DATABASE_URL="postgresql://docker:docker@localhost:5432/codelabapi?schema=public
 ```
 
+## Iniciando container
+
+Inicie o container docker com `docker compose up -d`
+
 ## Gerando esquema do Prisma e criando a estrutura do banco
 
 Para gerar o esquema do Prisma assim como a estrutura no banco de dados, basta rodar o comando: `npx prisma db push`.
